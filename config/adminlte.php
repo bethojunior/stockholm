@@ -315,8 +315,8 @@ return [
                     'url'  => 'products',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Listagem',
+                    'url'  => 'products/list',
                 ],
             ],
         ],

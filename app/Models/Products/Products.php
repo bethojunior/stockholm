@@ -4,6 +4,7 @@ namespace App\Models\Products;
 
 use App\Models\StockProducts\StockProducts;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Products extends Model
 {
@@ -17,7 +18,10 @@ class Products extends Model
         'value' => 'float'
     ];
 
-    public function amount()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function amount(): BelongsTo
     {
         return $this->belongsTo(StockProducts::class);
     }

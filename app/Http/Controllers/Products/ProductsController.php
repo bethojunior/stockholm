@@ -37,9 +37,21 @@ class ProductsController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
+    public function show(): View
+    {
+        $products = $this->service->list();
+        return view('admin.products.list')->with([
+            'products' => $products
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index() : View
     {
         $token = $this->userService->tokenUserLogged();
+
         return view('admin.products.create')->with([
             'token' => $token
         ]);

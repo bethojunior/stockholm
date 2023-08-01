@@ -46,4 +46,14 @@ class ProductsService
         return $product;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]
+     */
+    public function list()
+    {
+        return $this->repository->getModel()
+            ::with('amount')->orderByDesc('id')
+            ->get();
+    }
+
 }
