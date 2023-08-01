@@ -50,7 +50,6 @@ export default {
     mounted() {
         const valueForm = document.getElementById('value');
         valueForm.addEventListener('input', this.formatCurrency);
-        console.log(this.token)
     },
 
     methods: {
@@ -76,7 +75,7 @@ export default {
             params.image = this.image;
 
             const URL = '/api/products';
-            console.log(this.token)
+            
             axios.post(URL, params, {
                 headers: {
                     'Authorization': 'Bearer ' + this.token,
