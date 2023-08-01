@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:web')
-    ->group(base_path('routes/private/api/products.php'));
+    ->group(base_path('routes/private/web/products.php'));

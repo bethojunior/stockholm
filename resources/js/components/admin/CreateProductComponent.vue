@@ -68,13 +68,13 @@ export default {
 
         create(){
 
-            let params = new FormData();
+            let params = {};
 
-            params.append('name', this.name);
-            params.append('value', this.value.replace(/[^\d,]/g, '').replace(',', '.'));
-            params.append('image', this.image);
+            params.name = this.name;
+            params.value = this.value.replace(/[^\d,]/g, '').replace(',', '.');
+            params.image = this.image;
 
-            const URL = '/api/products';
+            const URL = '/products';
             const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
             axios.post(URL, params, {
@@ -84,14 +84,13 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response);
-                this.$swal.fire('Produto criado com sucesso', params.get('name') + ' foi criado', 'success');
+                console.log(response)
+                this.$swal.fire('Produto criado com sucesso', params.name + ' foi criado', 'success');
             })
             .catch(error => {
-                console.log(error);
-                this.$swal.fire('Erro ao criar produto', 'Contate o suporte', 'error');
+                console.log(error)
+                this.$swal.fire('Erro ao criar produto', 'Contate o suporte', 'error')
             });
-
 
         }
     }
