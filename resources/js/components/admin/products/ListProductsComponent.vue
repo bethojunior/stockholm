@@ -63,7 +63,7 @@ export default {
 
         pathImage(){
             const uri = window.location.host;
-            return 'http://' + uri + '/storage/';
+            return 'https://' + uri + '/public/storage/';
         },
 
         create(){
