@@ -53,17 +53,14 @@ export default {
     },
 
     mounted() {
-        console.log()
-        this.products.map(product => {
-            console.log(product)
-        })
+
     },
 
     methods: {
 
         pathImage(){
             const uri = window.location.host;
-            return 'https://' + uri + '/public/storage/';
+            return 'https://' + uri + 'public/storage/';
         },
 
         create(){

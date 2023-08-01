@@ -13,6 +13,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="application-name" content="PWA">
 <link rel="icon" sizes="512x512" href="{{ asset('images/logo.png') }}">
+<link rel="icon" href="{{ asset('images/logo.png') }}">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
