@@ -69,5 +69,13 @@ class UserService
         return $user;
     }
 
+    /**
+     * @return mixed
+     */
+    public function tokenUserLogged()
+    {
+        return auth()->user()->createToken('tokens')->plainTextToken;
+    }
+
 
 }

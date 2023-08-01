@@ -6,30 +6,40 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ApiResponse;
 use App\Http\Validates\Products\ProductsValidate;
 use App\Services\Products\ProductsService;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductsController extends Controller
 {
 
     private ProductsService $service;
     private ProductsValidate $validate;
+    private UserService $userService;
 
     /**
      * @param ProductsService $productsService
      * @param ProductsValidate $productsValidate
+     * @param UserService $userService
      */
-    public function __construct(ProductsService $productsService, ProductsValidate $productsValidate)
+    public function __construct(ProductsService $productsService,
+        ProductsValidate $productsValidate,
+        UserService $userService)
     {
         $this->service = $productsService;
         $this->validate = $productsValidate;
+        $this->userService = $userService;
     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
-    public function index()
+    public function index() : View
     {
-        return view('admin.products.create');
+        $token = $this->userService->tokenUserLogged();
+        return view('admin.products.create')->with([
+            'token' => $token
+        ]);
     }
 
     /**

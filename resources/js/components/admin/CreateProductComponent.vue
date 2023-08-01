@@ -32,7 +32,7 @@
 export default {
     name : 'CreateProductsComponent',
 
-    props: ['logged'],
+    props: ['logged', 'token'],
 
     data(){
         return{
@@ -48,8 +48,9 @@ export default {
     },
 
     mounted() {
-        const valorInput = document.getElementById('value');
-        valorInput.addEventListener('input', this.formatCurrency);
+        const valueForm = document.getElementById('value');
+        valueForm.addEventListener('input', this.formatCurrency);
+        console.log(this.token)
     },
 
     methods: {
@@ -74,21 +75,18 @@ export default {
             params.value = this.value.replace(/[^\d,]/g, '').replace(',', '.');
             params.image = this.image;
 
-            const URL = '/products';
-            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
+            const URL = '/api/products';
+            console.log(this.token)
             axios.post(URL, params, {
                 headers: {
-                    'Authorization': 'Bearer ' + token,
+                    'Authorization': 'Bearer ' + this.token,
                     'Content-Type': 'multipart/form-data'
                 }
             })
             .then(response => {
-                console.log(response)
                 this.$swal.fire('Produto criado com sucesso', params.name + ' foi criado', 'success');
             })
             .catch(error => {
-                console.log(error)
                 this.$swal.fire('Erro ao criar produto', 'Contate o suporte', 'error')
             });
 

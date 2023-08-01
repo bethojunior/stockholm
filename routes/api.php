@@ -18,5 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:web')
+Route::middleware('auth:sanctum')
     ->group(base_path('routes/private/web/products.php'));
