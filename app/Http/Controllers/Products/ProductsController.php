@@ -22,9 +22,11 @@ class ProductsController extends Controller
      * @param ProductsValidate $productsValidate
      * @param UserService $userService
      */
-    public function __construct(ProductsService $productsService,
+    public function __construct(
+        ProductsService $productsService,
         ProductsValidate $productsValidate,
-        UserService $userService)
+        UserService $userService
+    )
     {
         $this->service = $productsService;
         $this->validate = $productsValidate;
