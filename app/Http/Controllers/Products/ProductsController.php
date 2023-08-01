@@ -7,6 +7,7 @@ use App\Http\Responses\ApiResponse;
 use App\Http\Validates\Products\ProductsValidate;
 use App\Services\Products\ProductsService;
 use App\Services\User\UserService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -48,7 +49,7 @@ class ProductsController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $this->validate::store($request);
 
