@@ -7,7 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="manifest" href="{{ asset('manifest.json') }}">
-<!-- Chrome for Android theme color -->
+
 <meta name="theme-color" content="#FF006C">
 
 <meta name="mobile-web-app-capable" content="yes">
@@ -17,7 +17,7 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="PWA">
+<meta name="apple-mobile-web-app-title" content="Cases">
 <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
 
 <script type="text/javascript">
