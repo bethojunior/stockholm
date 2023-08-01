@@ -40,6 +40,7 @@ class ProductsController extends Controller
     public function show(): View
     {
         $products = $this->service->list();
+
         return view('admin.products.list')->with([
             'products' => $products
         ]);
