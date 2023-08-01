@@ -15,8 +15,18 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
+import axios from "axios";
+
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 import ExampleComponent from './components/ExampleComponent.vue';
+import HomeComponent from "./components/admin/HomeComponent.vue";
+import CreateProductComponent from "./components/admin/CreateProductComponent.vue";
+
 app.component('example-component', ExampleComponent);
+app.component('home-component', HomeComponent);
+app.component('create-product-component', CreateProductComponent);
 
 /**
  * The following block of code may be used to automatically register your
