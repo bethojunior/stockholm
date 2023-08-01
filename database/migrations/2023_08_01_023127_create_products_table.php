@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->float('value');
+            $table->longText('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -5,13 +5,17 @@ namespace App\Models\Products;
 use App\Models\StockProducts\StockProducts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Products extends Model
 {
+
+    use SoftDeletes;
     protected $fillable = [
         'name',
         'image',
-        'value'
+        'value',
+        'description'
     ];
 
     protected $casts = [
