@@ -20,6 +20,8 @@ import axios from "axios";
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+app.use(VueSweetalert2);
+
 import ExampleComponent from './components/ExampleComponent.vue';
 import HomeComponent from "./components/admin/HomeComponent.vue";
 import CreateProductComponent from "./components/admin/CreateProductComponent.vue";
