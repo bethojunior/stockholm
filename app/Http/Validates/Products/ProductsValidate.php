@@ -10,6 +10,7 @@ class ProductsValidate
             'name' => 'required',
             'image' => 'required',
             'value' => 'required',
+            'description' => 'required'
         ]);
     }
 

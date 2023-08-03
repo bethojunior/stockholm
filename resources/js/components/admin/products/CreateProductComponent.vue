@@ -18,6 +18,11 @@
                 <input id="value" v-model="value" type="text" class="form-control">
             </div>
 
+            <div class="form-group">
+                <label for="">Descrição</label>
+                <textarea class="form-control" v-model="description" name="" id="" cols="30" rows="10"></textarea>
+            </div>
+
             <div class="col-lg-12 col-sm-12">
                 <button @click="create" class="btn btn-success col-sm-12 col-lg-1">Salvar</button>
             </div>
@@ -40,6 +45,7 @@ export default {
             'name' : null,
             'value' : null,
             'image' : null,
+            'description' : null
         }
     },
 
@@ -73,9 +79,10 @@ export default {
             params.name = this.name;
             params.value = this.value.replace(/[^\d,]/g, '').replace(',', '.');
             params.image = this.image;
+            params.description = this.description;
 
             const URL = '/api/products';
-            
+
             axios.post(URL, params, {
                 headers: {
                     'Authorization': 'Bearer ' + this.token,

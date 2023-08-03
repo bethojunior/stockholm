@@ -56,4 +56,22 @@ class ProductsService
             ->get();
     }
 
+    /**
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @throws \Exception          
+     */
+    public function destroy(int $id)
+    {
+        try{
+            $product = $this->repository->find($id);
+            $product->delete();
+        }catch (\Exception $exception)
+        {
+            throw new \Exception('Error to destroy product: ' . $exception->getMessage());
+        }
+
+        return $product;
+    }
+
 }

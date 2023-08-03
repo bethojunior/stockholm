@@ -320,6 +320,20 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Estoque',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Criar',
+                    'url'  => 'stock/create',
+                ],
+                [
+                    'text' => 'Listagem',
+                    'url'  => 'stock/list',
+                ],
+            ],
+        ],
 
         ['header' => 'labels'],
         [

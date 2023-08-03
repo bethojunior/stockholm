@@ -77,4 +77,21 @@ class ProductsController extends Controller
         return ApiResponse::created($product,'Product created');
     }
 
+    /**
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function destroy(int $id): JsonResponse
+    {
+        try{
+            $product = $this->service
+                ->destroy($id);
+        }catch (\Exception $exception)
+        {
+            return ApiResponse::error('','Error to destroy product: '. $exception->getMessage());
+        }
+
+        return ApiResponse::success($product,'Product deleted with success');
+    }
+
 }

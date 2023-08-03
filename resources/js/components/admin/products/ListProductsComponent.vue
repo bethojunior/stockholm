@@ -4,14 +4,19 @@
         <div class="card card-solid">
             <div class="card-body">
                 <div class="row" v-for="product in products">
-                    <div class="col-12 col-sm-12">
+                    <div class="col-lg-6 col-sm-12">
                         <h3 class="d-inline-block d-sm-none">{{ product.name }}</h3>
                         <div class="col-12">
                             <img :src="this.pathImage() + product.image" class="product-image" alt="Product Image">
                         </div>
                     </div>
-                    <div class="col-lg-12 col-sm-12">
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+                    <div class="col-lg-6 col-sm-12">
+                        <p>
+                            {{ product.description }}
+                        </p>
+                        <p>
+                            <b>Em estoque : {{ product.amount.amount }}</b>
+                        </p>
                         <hr>
                         <div class="bg-green py-2 px-3 mt-4">
                             <h2 class="mb-0">

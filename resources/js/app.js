@@ -26,11 +26,13 @@ import ExampleComponent from './components/ExampleComponent.vue';
 import HomeComponent from "./components/admin/HomeComponent.vue";
 import CreateProductComponent from "./components/admin/products/CreateProductComponent.vue";
 import ListProductsComponent from "./components/admin/products/ListProductsComponent.vue";
+import CreateStockComponent from "./components/admin/stock/CreateStockComponent.vue";
 
 app.component('example-component', ExampleComponent);
 app.component('home-component', HomeComponent);
 app.component('create-product-component', CreateProductComponent);
 app.component('list-products-component', ListProductsComponent);
+app.component('create-stock-component', CreateStockComponent);
 
 /**
  * The following block of code may be used to automatically register your

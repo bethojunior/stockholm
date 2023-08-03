@@ -5,6 +5,7 @@ namespace App\Models\Products;
 use App\Models\StockProducts\StockProducts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Products extends Model
@@ -23,10 +24,10 @@ class Products extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function amount(): BelongsTo
+    public function amount(): HasOne
     {
-        return $this->belongsTo(StockProducts::class);
+        return $this->hasOne(StockProducts::class,'product_id', 'id');
     }
 }

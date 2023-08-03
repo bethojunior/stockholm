@@ -24,3 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth:web')
     ->group(base_path('routes/private/web/products.php'));
+
+Route::middleware('auth:web')
+    ->group(base_path('routes/private/web/stock.php'));
