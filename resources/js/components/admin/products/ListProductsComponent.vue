@@ -1,6 +1,5 @@
 <template>
     <div class="card">
-
         <div class="card card-solid">
             <div class="card-body">
                 <div class="row" v-for="product in products">
@@ -70,7 +69,7 @@ export default {
 
         pathImage(){
             const uri = window.location.host;
-            return 'https://' + uri + '/public//storage/';
+            return 'http://' + uri + '/storage/';
         },
 
         destroy(id){
