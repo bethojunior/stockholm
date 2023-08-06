@@ -70,4 +70,17 @@ class SalesService
 
         return $sales;
     }
+
+    /**
+     * @param int $userId
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]
+     */
+    public function salesByUser(int $userId)
+    {
+        return $this->repository
+            ->getModel()::where('user_id',$userId)
+            ->with(['products','client'])
+            ->orderByDesc('id')
+            ->get();
+    }
 }

@@ -64,4 +64,17 @@ class SalesController extends Controller
 
         return $sales;
     }
+
+    /**
+     * @param int $userId
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
+    public function salesByUser(): View
+    {
+        $userId = auth()->user()->id;
+        $sales = $this->service->salesByUser($userId);
+        return view('admin.sales.perUser')->with([
+            'sales' => $sales
+        ]);
+    }
 }

@@ -331,9 +331,9 @@ return [
 
         ['header' => 'labels'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'       => 'Minhas vendas',
+            'icon_color' => 'green',
+            'url'        => 'sales/me',
         ],
         [
             'text'       => 'warning',
