@@ -10,6 +10,10 @@ class SalesValidate
     {
         $request->validate([
             'products' => 'required|array',
+            'user_id'  => 'required|exists:users,id',
+            'payment_method' => 'required',
+            'client' => 'required',
+            'value' => 'required'
         ]);
     }
 

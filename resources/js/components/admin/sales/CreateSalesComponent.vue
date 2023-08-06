@@ -7,6 +7,7 @@
         border-radius: 20vw;
         height: 5vh;
     }
+
 </style>
 <template>
     <div class="row col-lg-12 col-sm-12">
@@ -56,10 +57,34 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <div v-if="moreInformations" id="more-informations">
+                        <div class="form-group">
+                            <label for="">Nome do cliente</label>
+                            <input v-model="client.name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Numero do cliente</label>
+                            <input v-model="client.phone" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Forma de pagamento</label>
+                            <select class="form-control" v-model="sale.payment_method">
+                                <option value="pix">Pix</option>
+                                <option value="cash">Dinheiro</option>
+                                <option value="credit">Crédito</option>
+                                <option value="debit">Débito</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-success col-sm-12" @click="store">Finalizar</button>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button @click="store" type="button" class="btn btn-primary">Finalizar compra</button>
+                    <button @click="getMoreInformations" type="button" class="btn btn-primary">Adicionar dados do cliente</button>
                 </div>
             </div>
         </div>
@@ -79,15 +104,19 @@ export default {
             'logged': this.logged,
             'token': this.token,
             'products': this.products,
-            'bag' : []
+            'bag' : [],
+            'moreInformations' : false,
+            'client' : {
+                'name' : null,
+                'phone' : null
+            },
+            'sale' : {
+                'payment_method' : null,
+                'value' : null,
+                'user_id' : null,
+                'products' : null
+            }
         }
-    },
-
-    beforeMount() {
-
-    },
-
-    mounted() {
     },
 
     methods: {
@@ -109,9 +138,12 @@ export default {
             //todo add information toast says products added
         },
 
+        getMoreInformations() {
+            this.moreInformations = true;
+        },
+
         store()
         {
-
             let value_total = 0;
 
             this.bag.map(item => {
@@ -122,14 +154,12 @@ export default {
 
             params.user_id = this.logged.id;
             params.value = value_total;
-            params.payment_method = 'payment_method';
+            params.payment_method = this.sale.payment_method;
+            params.client = this.client;
             params.products = this.bag;
 
-            return console.log(params)
 
-            const URL = '/api/sales';
-
-            axios.post(URL, params, {
+            axios.post('/api/sales', params, {
                 headers: {
                     'Authorization': 'Bearer ' + this.token,
                 }
@@ -141,6 +171,7 @@ export default {
                 console.warn(error);
                 this.$swal.fire('Erro ao abrir venda', 'Contate o suporte', 'error')
             });
+
         }
 
     }
