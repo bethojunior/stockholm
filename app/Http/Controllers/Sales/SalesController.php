@@ -54,15 +54,15 @@ class SalesController extends Controller
     {
         $this->validate::store($request);
 
-        dd($request->all());
-//        try{
-//            $sales = $this->service
-//                ->create($request->all());
-//        }catch (\Exception $e)
-//        {
-//            return ApiResponse::error('', $e->getMessage());
-//        }
-//
-//        return $sales;
+//        dd($request->all());
+        try{
+            $sales = $this->service
+                ->create($request->all());
+        }catch (\Exception $e)
+        {
+            return ApiResponse::error('', $e->getMessage());
+        }
+
+        return $sales;
     }
 }
