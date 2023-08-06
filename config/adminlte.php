@@ -295,15 +295,9 @@ return [
             'text' => 'search',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'text'        => 'Vender',
+            'url'         => 'sales',
+            'icon'        => 'fas fa-fw fa-store',
             'label_color' => 'success',
         ],
         [

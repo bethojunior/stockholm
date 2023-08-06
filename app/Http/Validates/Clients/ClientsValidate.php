@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Validates\Sales;
+namespace App\Http\Validates\Clients;
 
 use Illuminate\Http\Request;
 
-class SalesValidate
+class ClientsValidate
 {
+
     public static function store(Request $request) : void
     {
         $request->validate([
-            'products' => 'required|array',
+            'name' => 'required',
+            'phone' => 'required'
         ]);
     }
-
 }

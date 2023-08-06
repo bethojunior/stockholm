@@ -19,7 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')
-    ->group(base_path('routes/private/web/products.php'));
+    ->group(base_path('routes/private/api/products.php'));
 
 Route::middleware('auth:sanctum')
-    ->group(base_path('routes/private/web/stock.php'));
+    ->group(base_path('routes/private/api/stock.php'));
+
+Route::middleware('auth:sanctum')
+    ->group(base_path('routes/private/api/sales.php'));

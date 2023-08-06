@@ -68,8 +68,8 @@ export default {
     methods: {
 
         pathImage(){
-            const uri = window.location.host;
-            return 'http://' + uri + '/storage/';
+            const uri = window.location.origin;
+            return uri + '/storage/';
         },
 
         destroy(id){

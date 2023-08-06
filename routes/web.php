@@ -27,3 +27,6 @@ Route::middleware('auth:web')
 
 Route::middleware('auth:web')
     ->group(base_path('routes/private/web/stock.php'));
+
+Route::middleware('auth:web')
+    ->group(base_path('routes/private/web/sales.php'));
