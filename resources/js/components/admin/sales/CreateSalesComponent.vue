@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="closeModalSales" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button @click="getMoreInformations" type="button" class="btn btn-primary">Adicionar dados do cliente</button>
                 </div>
             </div>
@@ -165,12 +165,19 @@ export default {
                 }
             })
             .then(response => {
-                this.$swal.fire('Venda criada com sucesso', 'success');
+                this.$swal.fire('Venda criada com sucesso');
             })
             .catch(error => {
-                console.warn(error);
                 this.$swal.fire('Erro ao abrir venda', 'Contate o suporte', 'error')
             });
+
+            this.bag = [];
+            this.client = {};
+            this.sale = {};
+            this.moreInformations = true;
+            document.getElementById('closeModalSales').click()
+            this.$forceUpdate();
+
 
         }
 
