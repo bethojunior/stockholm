@@ -23,7 +23,7 @@
                 <img class="col-lg-12 col-sm-12" :src="this.pathImage() + product.image" alt="">
             </div>
             <div class="drp-buttons">
-                <button @click="addToBag(product)" class="btn btn-success">Adicionar a sacola</button>
+                <button @click="addToBag(product)" class="btn btn-success ml-2">Adicionar a sacola</button>
             </div>
         </div>
     </div>

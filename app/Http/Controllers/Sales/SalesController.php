@@ -54,7 +54,6 @@ class SalesController extends Controller
     {
         $this->validate::store($request);
 
-//        dd($request->all());
         try{
             $sales = $this->service
                 ->create($request->all());

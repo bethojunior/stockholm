@@ -26,7 +26,7 @@ class StockService
     {
         try{
             $stock = $this->repository
-                ->create($params);
+                ->updateOrCreate($params);
         }catch (\Exception $exception)
         {
             throw new \Exception('Error to create: ' . $exception->getMessage());
