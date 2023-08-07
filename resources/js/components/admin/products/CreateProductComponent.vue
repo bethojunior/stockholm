@@ -18,7 +18,7 @@
                 <input id="value" v-model="value" type="text" class="form-control">
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-lg-4 co-sm-12">
                 <label for="">Descrição</label>
                 <textarea class="form-control" v-model="description" name="" id="" cols="30" rows="10"></textarea>
             </div>
