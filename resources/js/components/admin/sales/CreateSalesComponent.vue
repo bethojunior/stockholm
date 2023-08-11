@@ -27,7 +27,8 @@
             </div>
         </div>
     </div>
-    <button id="my-items" class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modal-my-products">
+
+    <button @click="openModalBag()" id="my-items" class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modal-my-products">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
             <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
         </svg>
@@ -50,10 +51,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in bag">
-                                <th scope="row">{{ item.name }}</th>
+                            <tr v-for="item in bagItems">
+                                <th scope="row">{{ item.item.item.name }}</th>
                                 <td>{{ item.amount }}</td>
-                                <td>{{ item.value }}</td>
+                                <td>R$ {{ item.item.item.value }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -105,6 +106,7 @@ export default {
             'token': this.token,
             'products': this.products,
             'bag' : [],
+            'bagItems': [],
             'moreInformations' : false,
             'client' : {
                 'name' : null,
@@ -129,10 +131,13 @@ export default {
         addToBag(product)
         {
             this.bag.push({
-                'name' : product.name,
-                'product_id': product.id,
-                'amount': 1,
-                'value' : product.value
+                'amount' : 1,
+                'item' : {
+                    'name' : product.name,
+                    'product_id': product.id,
+                    'amount': 1,
+                    'value' : product.value
+                }
             });
 
             //todo add information toast says products added
@@ -177,8 +182,52 @@ export default {
             this.moreInformations = true;
             document.getElementById('closeModalSales').click()
             this.$forceUpdate();
+        },
 
+        openModalBag()
+        {
+            this.findObj(this.bag).map(item => {
+                this.bagItems.push(item)
+            })
+            this.$forceUpdate();
+        },
 
+        findObj(array)
+        {
+            const amount = new Map();
+            const duplicates = [];
+
+            for (const item of array) {
+                const _object_ = JSON.stringify(item);
+
+                if (amount.has(_object_)) {
+                    const amount_ = amount.get(_object_);
+                    amount.set(_object_, amount_ + 1);
+                } else {
+                    amount.set(_object_, 1);
+                }
+            }
+
+            for (const [object_, _amount] of amount.entries()) {
+                if (_amount > 1) {
+                    const itemDuplicated = JSON.parse(object_);
+                    duplicates.push({
+                        item: itemDuplicated,
+                        amount: _amount - 1
+                    });
+                }
+            }
+
+            for (const itemDuplicated of duplicates) {
+                const index = array.findIndex(item =>
+                    JSON.stringify(item) === JSON.stringify(itemDuplicated.item)
+                );
+                if (index !== -1) {
+                    array.splice(index, 1);
+                }
+            }
+
+            return duplicates;
         }
 
     }

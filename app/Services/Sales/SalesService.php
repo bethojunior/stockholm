@@ -22,7 +22,8 @@ class SalesService
      * @param ClientsService $clientsService
      * @param StockRepository $stockRepository
      */
-    public function __construct(
+    public function __construct
+    (
         SalesRepository $salesRepository,
         SalesItemsRepository $salesItemsRepository,
         ClientsService $clientsService,

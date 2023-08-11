@@ -59,7 +59,7 @@ class ProductsService
     /**
      * @param int $id
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
-     * @throws \Exception          
+     * @throws \Exception
      */
     public function destroy(int $id)
     {

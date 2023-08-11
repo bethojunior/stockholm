@@ -2,19 +2,20 @@
 
 namespace App\Services\Stock;
 
+use App\Contracts\Service\AbstractService;
 use App\Repositories\Stock\StockRepository;
 
-class StockService
+class StockService extends AbstractService
 {
-
-    private StockRepository $repository;
+    private StockRepository $stockRepository;
 
     /**
      * @param StockRepository $stockRepository
      */
     public function __construct(StockRepository $stockRepository)
     {
-        $this->repository = $stockRepository;
+        $this->stockRepository = $stockRepository;
+        $this->setRepository($stockRepository);
     }
 
     /**
@@ -25,7 +26,7 @@ class StockService
     public function create(array $params)
     {
         try{
-            $stock = $this->repository
+            $stock = $this->stockRepository
                 ->updateOrCreate($params);
         }catch (\Exception $exception)
         {
