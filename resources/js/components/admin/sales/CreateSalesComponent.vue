@@ -153,8 +153,8 @@ export default {
         {
             let value_total = 0;
 
-            this.bag.map(item => {
-                value_total += item.value;
+            this.bagItems.map(item => {
+                value_total += item.item.item.value;
             });
 
             let params = {};
