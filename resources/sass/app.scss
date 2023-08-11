@@ -10,3 +10,29 @@
 .content-wrapper>.content {
     padding: 13px 0.5rem!important;
 }
+
+.brand-image.elevation-3 {
+    box-shadow: none!important;
+}
+.main-sidebar.sidebar-dark-primary.elevation-4{
+    background-color: white!important;
+}
+.layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*=navbar]){
+    background-color: white!important;
+    color: lightsteelblue!important;
+}
+ul.nav.nav-pills.nav-sidebar.flex-column .form-inline.my-2 .input-group .form-control.form-control-sidebar{
+    background-color: whitesmoke;
+    color: black!important;
+}
+.input-group>.input-group-append>.btn, .input-group>.input-group-append>.input-group-text, .input-group>.input-group-prepend:first-child>.btn:not(:first-child), .input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child), .input-group>.input-group-prepend:not(:first-child)>.btn, .input-group>.input-group-prepend:not(:first-child)>.input-group-text{
+    background-color: cornflowerblue!important;
+}
+.sidebar-mini .main-sidebar .nav-link, .sidebar-mini-md .main-sidebar .nav-link, .sidebar-mini-xs .main-sidebar .nav-link {
+    width: calc(250px - 0.5rem * 2);
+    transition: width ease-in-out .3s;
+}
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus{
+    background-color: cornflowerblue!important;
+    color: white!important;
+}

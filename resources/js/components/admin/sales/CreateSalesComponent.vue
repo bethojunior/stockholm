@@ -125,7 +125,9 @@ export default {
 
         pathImage()
         {
-            return window.location.origin + '/storage/';
+            if(window.location.origin === 'http://localhost:8000')
+                return window.location.origin + '/storage/';
+            return window.location.origin + '/public/storage/';
         },
 
         addToBag(product)

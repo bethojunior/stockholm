@@ -69,7 +69,10 @@ export default {
 
         pathImage(){
             const uri = window.location.origin;
-            return uri + '/storage/';
+
+            if(uri === 'http://localhost:8000')
+                return uri + '/storage/';
+            return uri + '/public/storage/';
         },
 
         destroy(id){
