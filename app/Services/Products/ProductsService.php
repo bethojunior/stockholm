@@ -26,8 +26,7 @@ class ProductsService
         ProductsRepository $productsRepository,
         StockRepository $stockRepository,
         ImageHelper $imageHelper
-    )
-    {
+    ) {
         $this->repository = $productsRepository;
         $this->imageHelper = $imageHelper;
         $this->stockRepository = $stockRepository;
@@ -39,16 +38,16 @@ class ProductsService
      */
     public function create(array $params)
     {
-        try{
+        try {
             DB::beginTransaction();
             $product = $this->repository->create($params);
-            $path = 'product-'.$product->id;
+            $path = 'product-' . $product->id;
             $image = $this->imageHelper::create($params['image'], $path);
             $product->update([
                 'image' => $image
             ]);
 
-            // create data stock product initial with only one by product with value defined like `pre` = $this->valueFirstProductCreate
+            //todo change the value of the `amount` field to the value arriving in the request // $this->valueFirstProductCreate
             $stockValues = [
                 'product_id' => $product->id,
                 'amount' => $this->valueFirstProductCreate
@@ -57,9 +56,9 @@ class ProductsService
             $this->stockRepository->create($stockValues);
 
             DB::commit();
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             DB::rollBack();
-            throw new Exception('Error to create product: '. $exception->getMessage());
+            throw new Exception('Error to create product: ' . $exception->getMessage());
         }
 
         return $product;
@@ -82,15 +81,13 @@ class ProductsService
      */
     public function destroy(int $id)
     {
-        try{
+        try {
             $product = $this->repository->find($id);
             $product->delete();
-        }catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             throw new \Exception('Error to destroy product: ' . $exception->getMessage());
         }
 
         return $product;
     }
-
 }
