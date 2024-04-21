@@ -52,21 +52,23 @@ class SalesService
             $sales = $this->repository->create($params);
 
             foreach ($params['products'] as $product){
-                $this->salesItemsRepository
+                //todo this count in $product["item"], need see how to provide
+                if(count($product["item"]) > 0){
+                    $this->salesItemsRepository
                     ->create([
-                        'product_id' => $product['product_id'],
+                        'product_id' => $product["item"]["product_id"],
                         'sales_id' => $sales->id,
-                        'amount' => $product['amount']
+                        'amount' => $product["item"]["amount"]
                     ]);
-
-                $this->stockRepository->decrementAmount($product['product_id'], $product['amount']);
+                    $this->stockRepository->decrementAmount($product["item"]['product_id'], $product['amount']);
+                }
             }
 
             DB::commit();
         }catch (\Exception $exception)
         {
             DB::rollBack();
-            throw new \Exception('Error to create: ' . $exception->getMessage());
+            throw new \Exception('Error to create: ' . $exception . $exception->getMessage());
         }
 
         return $sales;

@@ -132,7 +132,7 @@ export default {
 
         addToBag(product)
         {
-            this.$swal.fire('produto ' + product.name +  ' adicionado a sacola');
+            this.$swal.fire(product.name +  ' adicionado a sacola');
             this.bag.push({
                 'amount' : 1,
                 'item' : {
@@ -142,8 +142,6 @@ export default {
                     'value' : product.value
                 }
             });
-
-            //todo add information toast says products added
         },
 
         getMoreInformations() {
