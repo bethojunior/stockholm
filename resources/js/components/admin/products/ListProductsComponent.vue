@@ -7,7 +7,7 @@
                         <h3 class="d-inline-block d-sm-none">{{ product.name }}</h3>
                         <div class="col-12">
                             <img :src="this.pathImage() + product.image" class="product-image" alt="Product Image">
-                        </div>
+                        </div>💻🚀
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <p>

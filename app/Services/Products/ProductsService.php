@@ -4,23 +4,33 @@ namespace App\Services\Products;
 
 use App\Helpers\ImageHelper;
 use App\Repositories\Products\ProductsRepository;
+use App\Repositories\Stock\StockRepository;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 
 class ProductsService
 {
 
+    private $valueFirstProductCreate = 1;
+
     private ProductsRepository $repository;
+    private StockRepository $stockRepository;
     private ImageHelper $imageHelper;
 
     /**
      * @param ProductsRepository $productsRepository
+     * @param StockRepository $stockRepository
      * @param ImageHelper $imageHelper
      */
-    public function __construct(ProductsRepository $productsRepository, ImageHelper $imageHelper)
+    public function __construct(
+        ProductsRepository $productsRepository,
+        StockRepository $stockRepository,
+        ImageHelper $imageHelper
+    )
     {
         $this->repository = $productsRepository;
         $this->imageHelper = $imageHelper;
+        $this->stockRepository = $stockRepository;
     }
 
     /**
@@ -37,6 +47,15 @@ class ProductsService
             $product->update([
                 'image' => $image
             ]);
+
+            // create data stock product initial with only one by product with value defined like `pre` = $this->valueFirstProductCreate
+            $stockValues = [
+                'product_id' => $product->id,
+                'amount' => $this->valueFirstProductCreate
+            ];
+
+            $this->stockRepository->create($stockValues);
+
             DB::commit();
         }catch (\Exception $exception){
             DB::rollBack();

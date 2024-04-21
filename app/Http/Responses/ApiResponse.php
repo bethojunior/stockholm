@@ -83,6 +83,7 @@ class ApiResponse
      */
     private static function mountErrorResponse(Exception $exception)
     {
+
         $response = [$exception->getMessage()];
 
         if (env('APP_ENV') != 'production')

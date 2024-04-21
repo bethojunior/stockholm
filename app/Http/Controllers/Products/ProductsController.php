@@ -27,8 +27,7 @@ class ProductsController extends Controller
         ProductsService $productsService,
         ProductsValidate $productsValidate,
         UserService $userService
-    )
-    {
+    ) {
         $this->service = $productsService;
         $this->validate = $productsValidate;
         $this->userService = $userService;
@@ -49,7 +48,7 @@ class ProductsController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
-    public function index() : View
+    public function index(): View
     {
         $token = $this->userService->tokenUserLogged();
 
@@ -66,15 +65,14 @@ class ProductsController extends Controller
     {
         $this->validate::store($request);
 
-        try{
+        try {
             $product = $this->service
                 ->create($request->all());
-        }catch (\Exception $exception)
-        {
-            return ApiResponse::error('','Error to create product: '.$exception->getMessage(),'400');
+        } catch (\Exception $exception) {
+            return ApiResponse::error('', 'Error to create product: ' . $exception->getMessage(), '400');
         }
 
-        return ApiResponse::created($product,'Product created');
+        return ApiResponse::created($product, 'Product created');
     }
 
     /**
@@ -83,15 +81,13 @@ class ProductsController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        try{
+        try {
             $product = $this->service
                 ->destroy($id);
-        }catch (\Exception $exception)
-        {
-            return ApiResponse::error('','Error to destroy product: '. $exception->getMessage());
+        } catch (\Exception $exception) {
+            return ApiResponse::error('', 'Error to destroy product: ' . $exception->getMessage());
         }
 
-        return ApiResponse::success($product,'Product deleted with success');
+        return ApiResponse::success($product, 'Product deleted with success');
     }
-
 }
