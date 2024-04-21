@@ -13,16 +13,16 @@
     <div class="row col-lg-12 col-sm-12">
         <input type="text" class="form-control mt-1 mb-1" placeholder="Buscar produto">
         <div v-for="product in products" class="card pt-2 pb-2">
-            <div class="col-lg-12 col-sm-8">
-                <span>{{ product.name }}</span><br>
-                <span>Em estoque: {{ product.amount.amount }}</span><br>
+            <div class="col-lg-12 col-sm-8 pl-3 pb-1 pl-4">
+                <b><h4>{{ product.name }}</h4></b>
                 <span>{{ product.description }}</span><br>
+                <span>Em estoque: {{ product.amount.amount }}</span><br>
                 <span>Valor: <b>R${{ product.value }}</b></span><br>
             </div>
             <div class="col-lg-12 col-sm-4">
-                <img class="col-lg-12 col-sm-12" :src="this.pathImage() + product.image" alt="">
+                <img class="col-lg-12 col-sm-12 border-radius-5-vw" :src="this.pathImage() + product.image" alt="">
             </div>
-            <div class="drp-buttons">
+            <div class="mt-1 ml-2 col-l12 drp-buttons">
                 <button @click="addToBag(product)" class="btn btn-success ml-2">Adicionar a sacola</button>
             </div>
         </div>

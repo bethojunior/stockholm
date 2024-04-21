@@ -1,3 +1,7 @@
 .product-image{
     border-radius: 2vw;
 }
+
+.border-radius-5-vw{
+    border-radius: 5vw;
+}
