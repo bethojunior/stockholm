@@ -52,9 +52,9 @@
                         </thead>
                         <tbody>
                             <tr v-for="item in bagItems">
-                                <th scope="row">{{ item.item.item.name }}</th>
-                                <td>{{ item.amount }}</td>
-                                <td>R$ {{ item.item.item.value }}</td>
+                                <th scope="row">{{ item.item.name }}</th>
+                                <td>{{ item.item.amount }}</td>
+                                <td>R$ {{ item.item.value }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -132,8 +132,22 @@ export default {
 
         addToBag(product)
         {
-            this.$swal.fire(product.name +  ' adicionado a sacola');
-            this.bag.push({
+            let validateDuplicated = false;
+
+            if(this.bag.length > 0 ){
+                validateDuplicated = this.bag.map(item => {
+                    if(item.item.product_id == product.id){
+                        item.item.amount = item.item.amount++;
+                        this.$forceUpdate();
+                        return true
+                    }
+                })
+            }
+
+            if (validateDuplicated)
+                return this.$swal.fire(product.name +  ' adicionado a sacola')
+
+            const insertProduct = this.bag.push({
                 'amount' : 1,
                 'item' : {
                     'name' : product.name,
@@ -142,6 +156,11 @@ export default {
                     'value' : product.value
                 }
             });
+
+            if (insertProduct > 0)
+                return this.$swal.fire(product.name +  ' adicionado a sacola')
+
+            return this.$swal.fire('Erro ao adicionar ' + product.name +  ' a sacola')
         },
 
         getMoreInformations() {
@@ -187,7 +206,11 @@ export default {
 
         openModalBag()
         {
-            this.findObj(this.bag).map(item => {
+            // this.findObj(this.bag).map(item => {
+            //     this.bagItems.push(item)
+            // })
+            // this.$forceUpdate();
+            this.bag.map(item => {
                 this.bagItems.push(item)
             })
             this.$forceUpdate();
