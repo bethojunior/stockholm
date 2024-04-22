@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+
 use Illuminate\Support\Facades\Storage;
 
 class ImageHelper
@@ -15,5 +16,4 @@ class ImageHelper
     {
         return Storage::disk('public')->putFile($path, $image);
     }
-
 }
