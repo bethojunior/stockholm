@@ -130,37 +130,37 @@ export default {
             return window.location.origin + '/public/storage/';
         },
 
-        addToBag(product)
-        {
-            let validateDuplicated = false;
+        addToBag(product) {
 
-            if(this.bag.length > 0 ){
-                validateDuplicated = this.bag.map(item => {
-                    if(item.item.product_id == product.id){
-                        item.item.amount = item.item.amount++;
-                        this.$forceUpdate();
-                        return true
+            let found = false;
+
+            if(this.bag.length > 0){
+                this.bag.forEach(item => {
+                    if (item.item.product_id === product.id) {
+                        item.item.amount = item.item.amount + 1;
+                        found = true;
                     }
-                })
+                });
             }
 
-            if (validateDuplicated)
-                return this.$swal.fire(product.name +  ' adicionado a sacola')
-
-            const insertProduct = this.bag.push({
-                'amount' : 1,
-                'item' : {
-                    'name' : product.name,
-                    'product_id': product.id,
+            if (!found) {
+                this.bag.push({
                     'amount': 1,
-                    'value' : product.value
-                }
-            });
+                    'item': {
+                        'amount': 1,
+                        'name': product.name,
+                        'product_id': product.id,
+                        'value': product.value
+                    }
+                });
+            }
 
-            if (insertProduct > 0)
-                return this.$swal.fire(product.name +  ' adicionado a sacola')
 
-            return this.$swal.fire('Erro ao adicionar ' + product.name +  ' a sacola')
+            if (!found)
+                return this.$swal.fire(product.name + ' adicionado à sacola');
+
+            return this.$swal.fire('Erro ao adicionar ' + product.name + ' à sacola');
+
         },
 
         getMoreInformations() {
@@ -206,14 +206,24 @@ export default {
 
         openModalBag()
         {
+            if(this.bagItems.length == 0){
+                this.bag.map(item => {
+                    this.bagItems.push(item)
+                })
+            }
+
+
+
+
+
             // this.findObj(this.bag).map(item => {
             //     this.bagItems.push(item)
             // })
             // this.$forceUpdate();
-            this.bag.map(item => {
-                this.bagItems.push(item)
-            })
-            this.$forceUpdate();
+            // this.bag.map(item => {
+            //     this.bagItems.push(item)
+            // })
+            // this.$forceUpdate();
         },
 
         findObj(array)
